@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101110">
+  <meta name="description" content="FACEPUCH STUDIO — игровая студия и сообщество">
+  <title>FACEPUCH STUDIO — Игровая платформа</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <video id="backgroundVideo" class="background-video" muted loop playsinline autoplay preload="metadata" hidden></video>
+  <div class="noise"></div>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="FACEPUCH STUDIO">
+      <img class="rust-logo site-logo-image" id="headerLogo" alt="Логотип FACEPUCH STUDIO" hidden><span class="logo-fallback">FP</span>
+      <span>FACEPUCH <b>STUDIO</b></span>
+    </a>
+    <nav>
+      <a href="#catalog">Игры</a>
+      <a href="#news">Новости</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#about">О студии</a>
+      <a href="#support">Связаться</a>
+    </nav>
+    <div class="header-actions"><button class="sound-toggle" id="soundToggle" title="Включить новогоднюю музыку">♫ ЗВУК: ВЫКЛ</button><button class="profile-btn" id="profileOpen"><span class="online-dot"></span> Профиль</button><button class="admin-entry" id="adminEntry" hidden>АДМИН</button></div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-content">
+        <div class="eyebrow"><span></span> НЕЗАВИСИМАЯ ИГРОВАЯ ПЛАТФОРМА</div>
+        <h1>СКОРО БУДЕТ<br><em>ДОСТУПНО.</em></h1>
+        <p class="hero-copy">FACEPUCH STUDIO — игровое сообщество, новости проектов и зимняя атмосфера выживания.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#news">Новости <span>↗</span></a>
+          <a class="btn btn-ghost" href="#about">О студии</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>4.7</strong><small>ВЕРСИЯ САЙТА</small></div>
+          <div><strong>24/7</strong><small>ДОСТУП К КАТАЛОГУ</small></div>
+          <div><strong>INDIE</strong><small>МИР ИГР</small></div>
+        </div>
+      </div>
+      
+      <div class="hero-bottom"><span>SCROLL TO EXPLORE</span><span>EST. 2026</span></div>
+    </section>
+
+    <section class="catalog section" id="catalog">
+      <div class="section-head">
+        <div><div class="eyebrow"><span></span> БИБЛИОТЕКА</div><h2>КАТАЛОГ <em>ИГР</em></h2></div>
+        <div class="catalog-tools">
+          <label class="search"><span>⌕</span><input id="searchInput" type="search" placeholder="Найти игру..."></label>
+          <select id="categoryFilter" aria-label="Фильтр по категории">
+            <option value="all">Все игры</option><option value="survival">Выживание</option><option value="action">Экшен</option><option value="indie">Инди</option>
+          </select>
+        </div>
+      </div>
+      <div class="game-grid" id="gameGrid">
+        <article class="game-card text-game-card" data-name="Rust" data-category="survival">
+          <div class="game-info"><div><span class="game-kicker">SURVIVAL</span><h3>Rust</h3><p>Многопользовательское выживание</p></div><span class="status">STEAM</span></div>
+          <button class="card-link" data-action="rust">Подробнее <span>↗</span></button>
+        </article>
+        <article class="game-card text-game-card" data-name="Rust 2" data-category="survival">
+          <div class="game-info"><div><span class="game-kicker">NEXT PROJECT</span><h3>Rust 2</h3><p>Страница проекта и новости</p></div><span class="status status-dev">INFO</span></div>
+          <button class="card-link" data-action="rust2">Подробнее <span>↗</span></button>
+        </article>
+        <article class="game-card text-game-card" data-name="FACEPUCH PROJECT 01" data-category="indie">
+          <div class="game-info"><div><span class="game-kicker">IN DEVELOPMENT</span><h3>FACEPUCH: PROJECT 01</h3><p>Собственный проект студии</p></div><span class="status status-dev">DEV</span></div>
+          <button class="card-link" data-action="project">Подробнее <span>↗</span></button>
+        </article>
+      </div>
+      <p class="empty-state" id="emptyState" hidden>Ничего не найдено. Попробуй изменить запрос.</p>
+    </section>
+
+
+    <section class="section feed-section" id="news"><div class="section-head"><div><div class="eyebrow"><span></span> ЛЕНТА СТУДИИ</div><h2>НОВОСТИ <em>И ОБНОВЛЕНИЯ</em></h2></div></div><div id="newsList" class="feed-grid"><article class="feed-card"><span class="feed-tag">ОБНОВЛЕНИЕ</span><h3>FACEPUCH STUDIO 4.7</h3><p>Зимнее оформление, метель, музыка и новые разделы сайта.</p><small>31.10.2026</small></article></div></section>
+    <section class="section feed-section" id="reviews"><div class="section-head"><div><div class="eyebrow"><span></span> СООБЩЕСТВО</div><h2>ОТЗЫВЫ <em>И ПРЕДЛОЖЕНИЯ</em></h2></div></div><form id="reviewForm" class="feedback-form"><input id="reviewName" maxlength="32" placeholder="Твой никнейм" required><textarea id="reviewText" maxlength="500" placeholder="Оставь отзыв или предложение" required></textarea><button class="btn btn-primary">Отправить отзыв</button></form><div id="reviewList" class="feed-grid"></div></section>
+
+    <section class="about section" id="about">
+      <div class="about-visual"><div class="about-stamp">FP<br><small>STUDIO</small></div><span>INDEPENDENT<br>GAME CULTURE</span></div>
+      <div class="about-copy"><div class="eyebrow"><span></span> КТО МЫ</div><h2>СОЗДАЁМ<br><em>СВОЙ МИР.</em></h2><p>FACEPUCH STUDIO — независимая игровая студия и площадка для публикации проектов. Здесь можно следить за разработкой, знакомиться с играми и находить официальные страницы загрузки.</p><a class="text-link" href="#support">Связаться со студией <span>↗</span></a></div>
+    </section>
+
+    <section class="support section" id="support">
+      <div><div class="eyebrow"><span></span> ЕСТЬ ВОПРОС?</div><h2>МЫ НА <em>СВЯЗИ.</em></h2><p>Нашёл ошибку или хочешь предложить свой проект? Напиши нам.</p></div>
+      <form id="messageForm" class="message-form"><input id="messageName" maxlength="32" placeholder="Твой никнейм" required><textarea id="messageText" maxlength="1000" placeholder="Сообщение студии" required></textarea><button class="btn btn-primary">Отправить сообщение <span>↗</span></button></form>
+    </section>
+  </main>
+
+  <footer><a class="brand footer-brand" href="#home"><img class="rust-logo site-logo-image" id="footerLogo" alt="Логотип FACEPUCH STUDIO" hidden><span class="logo-fallback">FP</span><span>FACEPUCH <b>STUDIO</b></span></a><span>© 2026 FACEPUCH STUDIO</span><span>VERSION 4.8 · НЕОФИЦИАЛЬНОЕ СООБЩЕСТВО</span></footer>
+
+  <div class="modal" id="gameModal" aria-hidden="true">
+    <div class="modal-panel"><button class="modal-close" data-close aria-label="Закрыть">×</button><div class="eyebrow"><span></span> ИНФОРМАЦИЯ ОБ ИГРЕ</div><h2 id="modalTitle">RUST</h2><p id="modalText"></p><a id="modalLink" class="btn btn-primary" href="#" target="_blank" rel="noopener">Открыть страницу <span>↗</span></a><small class="modal-note" id="modalNote"></small></div>
+  </div>
+  <div class="modal" id="profileModal" aria-hidden="true">
+    <div class="modal-panel profile-panel"><button class="modal-close" data-close aria-label="Закрыть">×</button><div class="eyebrow"><span></span> ЛИЧНЫЙ КАБИНЕТ</div><div class="avatar">G</div><h2>ГОСТЬ</h2><p>Демонстрационный профиль FACEPUCH STUDIO.</p><label class="profile-label">НИКНЕЙМ<input id="nickname" maxlength="20" placeholder="Введи никнейм"></label><button class="btn btn-primary" id="saveNickname">Сохранить никнейм <span>↗</span></button><small class="modal-note">Профиль демонстрационный: данные сохраняются только в этом браузере.</small></div>
+  </div>
+  <div class="admin-modal" id="adminModal" aria-hidden="true"><div class="admin-panel"><button class="modal-close" id="adminClose">×</button><div class="eyebrow"><span></span> OWNER CONTROL</div><h2>ПАНЕЛЬ <em>УПРАВЛЕНИЯ</em></h2><p class="admin-warning" id="adminWarning">Вход владельца через Supabase.</p><form id="adminLogin" class="admin-login"><label>EMAIL<input id="adminEmail" type="email" autocomplete="username" required placeholder="Твой email"></label><label>ПАРОЛЬ<input id="adminPassword" type="password" autocomplete="current-password" required placeholder="Пароль владельца"></label><button class="btn btn-primary" type="submit">Войти в панель</button><small>Вход доступен только аккаунту, который добавлен владельцем в Supabase.</small></form><button id="adminLogout" class="btn btn-ghost" type="button" hidden>Выйти из панели</button><div class="admin-tabs" hidden><button data-tab="editor" class="active">Редактор</button><button data-tab="inbox">Сообщения</button><button data-tab="moderation">Модерация ⋮</button><button data-tab="stats">Статистика</button></div><section class="admin-view" id="admin-editor"><label>Логотип сайта (PNG, JPG, SVG)<input id="uploadLogo" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml"></label><div class="logo-admin-preview"><img id="logoPreview" alt="Предпросмотр логотипа" hidden><span id="logoPreviewEmpty">Логотип не загружен</span></div><button id="removeLogo" class="btn btn-ghost" type="button">Убрать логотип</button><label>Заголовок сайта<input id="editTitle" value="СКОРО БУДЕТ ДОСТУПНО"></label><label>Описание<textarea id="editDescription">FACEPUCH STUDIO — игровое сообщество и зимняя атмосфера выживания.</textarea></label><label>Цвет всего фона<input id="editBackgroundColor" type="color" value="#17130f"></label><label>Фоновая картинка (URL, необязательно)<input id="editBackground" placeholder="https://..."></label><label>Загрузить фоновую картинку<input id="uploadImage" type="file" accept="image/*"></label><p class="music-admin-note" id="backgroundStatus">Можно выбрать цвет или загрузить картинку для всего сайта.</p><button id="removeBackground" class="btn btn-ghost" type="button">Сбросить фон</button><label>Фоновое видео (MP4)<input id="uploadVideo" type="file" accept="video/mp4,.mp4"></label><label class="video-toggle-label"><input id="enableBackgroundVideo" type="checkbox"> Включить фоновое видео</label><p class="music-admin-note" id="videoStatus">Видео не загружено.</p><button id="removeVideo" class="btn btn-ghost" type="button">Убрать фоновое видео</button><label>Музыка сайта (MP3, WAV, OGG и другие аудиофайлы)<input id="uploadMusic" type="file" accept="audio/*"></label><p class="music-admin-note" id="musicStatus">Сейчас играет встроенная зимняя мелодия.</p><button id="removeMusic" class="btn btn-ghost" type="button">Убрать загруженную музыку</button><label>Новая новость<input id="newsTitle" placeholder="Заголовок новости"></label><label>Текст новости<textarea id="newsBody" placeholder="Текст публикации"></textarea></label><label>Картинка новости<input id="newsImage" type="file" accept="image/*"></label><button id="publishNews" class="btn btn-primary">Опубликовать новость</button><button id="saveSite" class="btn btn-ghost">Сохранить изменения</button></section><section class="admin-view" id="admin-inbox" hidden><div id="inboxList"></div></section><section class="admin-view" id="admin-moderation" hidden><p>Меню ⋮ доступно у локальных отзывов. Блокировка здесь демонстрационная.</p><div id="moderationList"></div></section><section class="admin-view" id="admin-stats" hidden><div class="stats-grid"><div><b id="statVisits">0</b><small>ЛОКАЛЬНЫЕ ПОСЕЩЕНИЯ</small></div><div><b id="statReviews">0</b><small>ОТЗЫВЫ В ЭТОМ БРАУЗЕРЕ</small></div><div><b id="statMessages">0</b><small>СООБЩЕНИЯ В ЭТОМ БРАУЗЕРЕ</small></div></div></section></div></div><audio id="customMusic" loop preload="none"></audio><canvas id="snowCanvas"></canvas><div class="toast" id="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
